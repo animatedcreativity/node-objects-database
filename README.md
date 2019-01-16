@@ -6,7 +6,7 @@ NOTE: Multiple types of objects can be stored in a single database file with dif
 Usage:
 
 ```
-var objectsDb = require("node-objects-storage");
+var objectsDb = require("node-objects-database");
 objectsDb.start("<database_file_name>"); // .nosql will be appended automatically. Use multiple instances for multiple file databases OR use different keys for different kinds of objects.
 ```
 
