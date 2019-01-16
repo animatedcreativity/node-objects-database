@@ -1,9 +1,11 @@
 # node-objects-database
 Simple module to work with saving/searching/deleting any objects using embed nosql file database, for small projects.
 
-NOTE: Multiple types of objects can be stored in a single database file with different key names, if needed.
+**NOTE:** Multiple types of objects can be stored in a single database file with different key names, if needed.
 
-Usage:
+Example on RunKit: **https://runkit.com/animatedcreativity/5c3f12c2f7ecd3001272016d**
+
+**Usage:**
 
 ```
 var objectsDb = require("node-objects-database");
@@ -46,7 +48,9 @@ objectsDb.remove("productId", "key_5678"); // searches by key and removes the ob
 objectsDb.clear(); // clears all objects from the file database
 ```
 
-IMPORTANT: All the above methods are asynchronous, so you should use .then .catch to check if actions are done, for example:
+----------------------------------------------------
+
+**IMPORTANT:** All the above methods are asynchronous, so you should use .then .catch to check if actions are done, for example:
 
 ```
 objectsDb.set("productId", {productId: "key_5678", name: "A good product", description: "This is a good product."})
@@ -57,6 +61,24 @@ objectsDb.set("productId", {productId: "key_5678", name: "A good product", descr
     // error occured.
   });
 ```
+
+OR
+
+```
+var objectsDb = require("node-objects-database");
+objectsDb.start("database_file_name");
+
+(async function() {
+    await objectsDb.set("productId", {productId: "key_5678", name: "A good product", description: "This is a good product."});
+    var product = await objectsDb.get("productId", "key_5678");
+    console.log(product);
+    await objectsDb.insert("productId", {productId: "key_5679", name: "Another good product", description: "This is another good product."});
+    var products = await objectsDb.find();
+    console.log(products);
+})();
+```
+
+-----------------------------------------------------
 
 ```
 objectsDb.db(); // returns full nosql object to work with
