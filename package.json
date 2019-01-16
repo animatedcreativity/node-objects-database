@@ -1,0 +1,25 @@
+{
+  "name": "node-objects-database",
+  "version": "0.0.1",
+  "description": "Simple module to work with saving/searching/deleting any objects using embed nosql file database, for small projects.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "nosql": "^6.1.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://github.com/animatedcreativity/node-objects-database"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "nosql",
+    "objects",
+    "storage"
+  ]
+}
