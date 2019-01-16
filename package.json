@@ -1,6 +1,6 @@
 {
   "name": "node-objects-database",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple module to work with saving/searching/deleting any objects using embed nosql file database, for small projects.",
   "main": "main.js",
   "scripts": {
