@@ -8,7 +8,7 @@ exports.db = function() {
 exports.set = function(key, object) {
   return new Promise(function(resolve, reject) {
     exports.get(key, object[key]).then(function(response) {
-      if (response.length > 0) {
+      if (response[key] === object[key]) {
         exports.update(key, object).then(function(response) {
           resolve(response);
         }).catch(function(error) {
@@ -54,12 +54,23 @@ exports.insert = function(key, object) {
 }
 exports.update = function(key, object) {
   return new Promise(function(resolve, reject) {
-    db.update(object).where(key, object[key]).callback(function(error, response) {
-      if (error) {
-        reject(error);
-        return false;
+    var existing = {};
+    exports.get(key, object[key]).then(function(response) {
+      if (response[key] === object[key]) {
+        existing = response;
       }
-      resolve(response);
+      for (var objectKey in object) {
+        existing[objectKey] = object[objectKey];
+      }
+      db.update(existing).where(key, object[key]).callback(function(error, response) {
+        if (error) {
+          reject(error);
+          return false;
+        }
+        resolve(response);
+      });
+    }).catch(function(error) {
+      reject(error);
     });
   });
 }
@@ -127,3 +138,8 @@ exports.count = async function(key) {
     });
   });
 }
+
+exports.start("database");
+exports.set("key", {key: "amazon_in_title2", field: "title"}).then(function() {
+  exports.set("key", {key: "amazon_in_title2", selector: "a.site-header__logo-link img1"});
+});
