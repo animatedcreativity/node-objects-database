@@ -33,7 +33,11 @@ exports.get = function(key, value) {
         reject(error);
         return false;
       }
-      resolve(response);
+      if (response.length > 0) {
+        resolve(response[0]);
+      } else {
+        resolve(response);
+      }
     });
   });
 }
