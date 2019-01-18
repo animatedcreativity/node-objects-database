@@ -90,3 +90,7 @@ objectsDb.db(); // returns full nosql object to work with
 
 **v0.0.5:**<br/>
 Fixed .get() to return single object instead of array.
+
+**v0.0.6:**<br/>
+Fixed .set() updating object if it exists. Issue came because of 0.0.5 update.<br/>
+Made .set() & .update() more flexible. Instead of overwriting full object, an object is now actually saved by checking what properties it already has and adding/updating new ones.
