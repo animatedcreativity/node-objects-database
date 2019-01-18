@@ -83,3 +83,10 @@ objectsDb.start("database_file_name");
 ```
 objectsDb.db(); // returns full nosql object to work with
 ```
+
+-----------------------------------------------------
+
+**Version history:**
+
+**v0.0.5:**<br/>
+Fixed .get() to return single object instead of array.
