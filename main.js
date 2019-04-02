@@ -1,10 +1,10 @@
 var NoSQL = require('nosql'), db;
 exports.start = function(dbName) {
   db = NoSQL.load(dbName + ".nosql");
-}
+};
 exports.db = function() {
   return db;
-}
+};
 exports.set = function(key, object) {
   return new Promise(function(resolve, reject) {
     exports.get(key, object[key]).then(function(response) {
@@ -25,7 +25,7 @@ exports.set = function(key, object) {
       reject(error);
     });
   });
-}
+};
 exports.get = function(key, value) {
   return new Promise(function(resolve, reject) {
     db.find().where(key, value).callback(function(error, response) {
@@ -40,7 +40,7 @@ exports.get = function(key, value) {
       }
     });
   });
-}
+};
 exports.insert = function(key, object) {
   return new Promise(function(resolve, reject) {
     db.insert(object, true).where(key, object[key]).callback(function(error, response) {
@@ -51,7 +51,7 @@ exports.insert = function(key, object) {
       resolve(response);
     });
   });
-}
+};
 exports.update = function(key, object) {
   return new Promise(function(resolve, reject) {
     var existing = {};
@@ -73,7 +73,7 @@ exports.update = function(key, object) {
       reject(error);
     });
   });
-}
+};
 exports.remove = function(key, value) {
   return new Promise(function(resolve, reject) {
     db.remove().where(key, value).callback(function(error, response) {
@@ -84,7 +84,7 @@ exports.remove = function(key, value) {
       resolve(response);
     });
   });
-}
+};
 exports.clear = function() {
   return new Promise(function(resolve, reject) {
     db.clear().callback(function(error, response) {
@@ -95,7 +95,7 @@ exports.clear = function() {
       resolve(response);
     });
   });
-}
+};
 exports.find = function(arg1, arg2) {
   if (typeof arg1 !== "object") {
     if (typeof arg1 !== "undefined") {
@@ -120,7 +120,7 @@ exports.find = function(arg1, arg2) {
       });
     });
   });
-}
+};
 exports.count = async function(key) {
   return await new Promise(function(resolve, reject) {
     exports.find().then(function(response) {
@@ -137,9 +137,4 @@ exports.count = async function(key) {
       reject(error);
     });
   });
-}
-
-exports.start("database");
-exports.set("key", {key: "amazon_in_title2", field: "title"}).then(function() {
-  exports.set("key", {key: "amazon_in_title2", selector: "a.site-header__logo-link img1"});
-});
+};
